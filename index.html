@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel='stylesheet' href="app/draw.css" type='text/css' media='all' />
+    <link rel="stylesheet" type="text/css" href="app/sweet-alert.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+    <title>Draw on</title>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  </head>
+  <body>
+    
+    <div id="takepictureMode">
+      <video id="video"></video>
+      <div>
+        <a href="#" id="takepicture" class="button button-3d button-primary button-rounded">Use this image</a>
+        <a href="#" id="cancelTakepicture" class="button button-3d button-caution button-rounded">Cancel</a>
+      </div>
+    </div>
+
+    <div id="drawMode">
+      <div id="canvasDiv"></div>
+
+      <a href="#" id="upload" class="button button-glow button-border button-rounded button-primary">Print</a>
+      <button id="camera" class="button button-raised button-action button-circle button-jumbo">
+        <i class="fa fa-camera"></i>
+      </button>
+      <a href="#" id="reset" class="button button-glow button-rounded button-highlight">Reset</a>
+    </div>
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="app/sweet-alert.min.js"></script>
+    <script src="//cdn.WebRTC-Experiment.com/DetectRTC.js"></script>
+    <script src="app/draw.js"></script>
+
+  </body>
+</html>
