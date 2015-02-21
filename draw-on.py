@@ -5,7 +5,7 @@ from PIL import Image
 import PIL.ImageOps
 
 printer = Adafruit_Thermal("/dev/tty.usbserial", 19200, timeout=5)
-printer.begin(heatTime=150)
+printer.begin(heatTime=180)
 printer.printImage(Image.open('public/uploads/draw-on.png'), True)
 printer.feed(3)
 

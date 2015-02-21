@@ -212,7 +212,7 @@ $( "#upload" ).click(function() {
       processData: false,
       type: 'POST',
       success: function(data){
-          
+          swal("(=ↀωↀ=)✧!", "waitting for your picture!", "success")
       }
   });
 });
