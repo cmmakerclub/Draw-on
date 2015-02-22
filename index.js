@@ -58,6 +58,6 @@ app.post('/api/photo',function(req,res){
 });
 
 /*Run the server.*/
-app.listen(3001,function(){
+app.listen(3000,function(){
     console.log("Working on port 3000");
 });
