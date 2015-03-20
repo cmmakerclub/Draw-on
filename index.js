@@ -15,11 +15,17 @@ var connection = amqp.createConnection();
 connection.on('ready', function () {
   console.log('INFO: connected with rabbitmq');
 
-  connection.queue('draw', function (q) {
+  connection.queue('draw' ,function (q) {
+
     q.bind('#');
-    q.subscribe(function (message) {
+    q.subscribe({ ack: true }, function (message) {
       console.log('INFO: get new message');
-      draw(message.filepath);
+      draw(message.filepath, function(err) {
+        
+        q.shift()
+
+      });
+
     });
   });
 });
@@ -65,7 +71,7 @@ function queue(fileObj) {
   });
 }
 
-function draw(filepath) {
+function draw(filepath, callback) {
   var options = {
     mode: 'text',
     pythonPath: '/usr/local/bin/python',
@@ -76,6 +82,14 @@ function draw(filepath) {
 
   console.log('INFO: printing new message');
   PythonShell.run('draw-on.py', options, function (err) {
-    if (err) throw err;
+
+    if (err) {
+      callback(err);
+    }
+
+    callback();
+
   });
+
+
 }
