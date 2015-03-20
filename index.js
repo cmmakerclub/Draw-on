@@ -13,21 +13,9 @@ var amqp = require('amqp');
 var connection = amqp.createConnection();
 
 connection.on('ready', function () {
+
   console.log('INFO: connected with rabbitmq');
 
-  connection.queue('draw' ,function (q) {
-
-    q.bind('#');
-    q.subscribe({ ack: true }, function (message) {
-      console.log('INFO: get new message');
-      draw(message.filepath, function(err) {
-        
-        q.shift()
-
-      });
-
-    });
-  });
 });
 
 /*Configure the multer.*/
@@ -71,25 +59,3 @@ function queue(fileObj) {
   });
 }
 
-function draw(filepath, callback) {
-  var options = {
-    mode: 'text',
-    pythonPath: '/usr/local/bin/python',
-    pythonOptions: ['-u'],
-    scriptPath: '.',
-    args: [ filepath ]
-  };
-
-  console.log('INFO: printing new message');
-  PythonShell.run('draw-on.py', options, function (err) {
-
-    if (err) {
-      callback(err);
-    }
-
-    callback();
-
-  });
-
-
-}
