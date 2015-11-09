@@ -13,6 +13,7 @@
     "express": "^4.11.2",
     "multer": "^0.1.8",
     "node-uuid": "^1.4.3",
+    "pubnub": "^3.7.9",
     "python-shell": "0.0.3",
     "serve-static": "^1.9.1"
   }

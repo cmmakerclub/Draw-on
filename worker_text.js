@@ -12,7 +12,7 @@ var port = process.argv[2]
 connection.on('ready', function () {
   console.log('INFO: connected with rabbitmq');
 
-  connection.queue('draw' ,function (q) {
+  connection.queue('text' ,function (q) {
 
     q.bind('#');
     q.subscribe({ ack: true }, function (message) {
@@ -23,7 +23,7 @@ connection.on('ready', function () {
 
       console.log("message")
       console.log(message)
-      draw(port, "http://" + host.host + ":3000/uploads/" + message.filepath, function(err) {
+      draw(port, "http://" + host.host + ":3000/uploads/" + message.text, function(err) {
 
         q.shift();
 
@@ -46,7 +46,7 @@ function draw(port, filepath, callback) {
   console.log('INFO: printing new message');
 
   console.log(options)
-  PythonShell.run('draw-on.py', options, function (err) {
+  PythonShell.run('worker_text.py', options, function (err) {
 
     if (err) {
       console.log(err)
